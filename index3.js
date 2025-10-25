@@ -41,6 +41,8 @@ const s1 = new Student({
 
 //   Student.find({}).then((data)=>console.log(data)).catch((err=>console.log(err)));
 
+
+
 Student.findByIdAndUpdate(
   "68ea006ba065fb11e4c1f854",
   { $set: [{ marks: 588 }, { name: "Gopal" }] },
