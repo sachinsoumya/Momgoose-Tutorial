@@ -1,0 +1,16 @@
+{
+  "name": "mongoose-tutorial",
+  "version": "1.0.0",
+  "description": "This is mongoose tutorail",
+  "main": "index3.js",
+  "scripts": {
+    "test": "jest",
+    "start":"node index8.js"
+    
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.19.1"
+  }
+}
