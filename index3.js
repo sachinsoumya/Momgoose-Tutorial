@@ -16,6 +16,7 @@ const StudentSchema = new mongoose.Schema({
   marks: { type: Number },
   std: Number,
   section: String,
+  intro:String
 });
 
 //Creating the model
@@ -23,6 +24,7 @@ const Student = mongoose.model("Student", StudentSchema);
 
 StudentSchema.index({ marks: 1 }); //* here also creating index on marrks field mannually
 StudentSchema.index({stream:1 , std:1}); //* here we are creating compound index.(i.e adding index more than one fields)
+StudentSchema.index({intro:'text'});//* here we are adding text index to intro field.
 
 //creating the document
 
@@ -80,6 +82,7 @@ Student.insertMany([
     marks: 600,
     std: "10",
     section: "B",
+    intro:"Hello I am Sachin and I am from science stream"
   },
   {
     name: "Simi",
@@ -90,6 +93,7 @@ Student.insertMany([
     marks: 400,
     std: 7,
     section: "A",
+    intro:"Hello I am Simi and I am from arts stream"
   },
   {
     name: "Sonu",
@@ -100,6 +104,7 @@ Student.insertMany([
     marks: 550,
     std: 8,
     section: "C",
+    intro:"Hello I am Sonu and I am from commerce stream"
   },
   {
     name: "Soumya",
@@ -110,6 +115,7 @@ Student.insertMany([
     marks: 530,
     std: 6,
     section: "C",
+    intro:"Hello I am Soumya and I am from arts stream"
   },
   {
     name: "Sushree",
@@ -120,6 +126,7 @@ Student.insertMany([
     marks: 510,
     std: 5,
     section: "B",
+    intro:"Hello I am Sushree and I am from science stream"
   },
   {
     name: "Dhuluku",
@@ -130,6 +137,7 @@ Student.insertMany([
     marks: 570,
     std: 8,
     section: "A",
+    intro:"Hello I am Dhuluku and I am from science stream"
   },
 ])
   .then((data) => console.log("students data saved successfully", data))
@@ -162,8 +170,13 @@ Student.insertMany([
     //   checkIndexing_2.executionStats.executionStages
     // );
 
-    const checkCompoundIndexing= await Student.find({stream:"Science", std:{$eq:10}}).explain("executionStats");
-    console.log(checkCompoundIndexing.executionStats.executionStages);
+    // const checkCompoundIndexing= await Student.find({stream:"Science", std:{$eq:10}}).explain("executionStats");
+    // console.log(checkCompoundIndexing.executionStats.executionStages);
+
+
+    const findByText = await Student.find({$text:{$search:"science"}}); //* here we are filtering documents through texts.
+
+    console.log(findByText);
   } catch (err) {
     console.log(err);
   }
