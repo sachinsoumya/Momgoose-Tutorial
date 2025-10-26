@@ -5,7 +5,7 @@
   "main": "index3.js",
   "scripts": {
     "test": "jest",
-    "start":"node index8.js"
+    "start":"node index3.js"
     
   },
   "author": "",
