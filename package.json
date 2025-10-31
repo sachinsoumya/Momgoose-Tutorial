@@ -1,7 +1,7 @@
 {
   "name": "mongoose-tutorial",
   "version": "1.0.0",
-  "description": "This is mongoose tutorail",
+  "description": "This is mongoose tutorial",
   "main": "index8.js",
   "scripts": {
     "test": "jest",

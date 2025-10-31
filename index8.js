@@ -46,21 +46,42 @@ PalSchema.index({ age: 1 });
 
 const Pal = mongoose.model("Pal", PalSchema);
 
-const p1 = new Pal({
-  name: "Panada",
-  email: "panda@gmail.com",
-  age: 30,
-});
+// const p1 = new Pal({
+//   name: "Lopa",
+//   email: "lopa@gmail.com",
+//   age: 23,
+// });
 
-p1.save()
-  .then((data) => ("data saved successfully", data))
-  .catch((err) => console.log("err in saving the data", err));
+// p1.save()
+//   .then((data) => ("data saved successfully", data))
+//   .catch((err) => console.log("err in saving the data", err));
 
-  (async function getDoc(){
+  const page=2;
+  const limit =2;
 
-    const filterDoc = await Pal.find({email:'sachin@gmail.com' , age:30}).explain();
+  (async function getDoc(page){
 
-    console.log(filterDoc.executionStats.executionStages.inputStage);
+    // const filterDoc = await Pal.find({email:'sachin@gmail.com' , age:30}).explain();
+
+    // console.log(filterDoc.executionStats.executionStages.inputStage);
+
+
+    //const getResults = await Pal.find({} , 'name email -_id'); //*It is like projection
+
+    // const getResults2 = await Pal.find({}, {name:1 , email:1 , _id:0} );
+
+    // const getResults3 = await Pal.find().select("name age");
+
+    // const users = await Pal.find().skip(page-1).limit(limit);
+
+    // console.log(users);
+
+    // console.log(getResults2);
     
 
   })();
+
+
+  // for(let i =1 ;i<=page;i++){
+  //    getDoc(i);
+  // }
