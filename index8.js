@@ -59,24 +59,35 @@ const Pal = mongoose.model("Pal", PalSchema);
   const page=2;
   const limit =2;
 
-  (async function getDoc(page){
+  (async function getDoc(){
 
     // const filterDoc = await Pal.find({email:'sachin@gmail.com' , age:30}).explain();
 
     // console.log(filterDoc.executionStats.executionStages.inputStage);
 
 
-    //const getResults = await Pal.find({} , 'name email -_id'); //*It is like projection
+    const getResults = await Pal.find({} , 'name email -_id'); //*It is like projection
 
-    // const getResults2 = await Pal.find({}, {name:1 , email:1 , _id:0} );
+    console.log(getResults);
 
-    // const getResults3 = await Pal.find().select("name age");
+    const getResults2 = await Pal.find({}, {name:1 , email:1 , _id:0} ); //* Projection
 
-    // const users = await Pal.find().skip(page-1).limit(limit);
+    console.log(getResults2);
 
-    // console.log(users);
+    const getResults3 = await Pal.find().select("name age"); //* select method to select filed to come in results(projection).
+
+
+    console.log(getResults3);
+
+
+    const users = await Pal.find().skip(page-1).limit(limit);    //* skip () and limit()
+
+    console.log(users);
 
     // console.log(getResults2);
+
+    const lean_users = await Pal.find({}).lean(); //* lean() method returns plain objects instead of mongoDb documents.- (Faster read)
+    console.log(lean_users);
     
 
   })();
